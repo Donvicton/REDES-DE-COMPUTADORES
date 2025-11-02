@@ -1,7 +1,7 @@
 # REDES-DE-COMPUTADORES
 Um sistema de chat multi-cliente em Python, implementado com as bibliotecas socket e threading  para a disciplina de Redes de Computadores
 
-# 💬 Chat Multi-Cliente em Python com Sockets
+# Chat Multi-Cliente em Python com Sockets
 
 Este projeto é uma implementação de um sistema de chat Cliente/Servidor desenvolvido em Python [cite: 3][cite_start], utilizando exclusivamente as bibliotecas nativas `socket`  [cite_start]e `threading`.
 
@@ -129,7 +129,7 @@ Se seu grupo quiser testar em computadores diferentes na mesma rede (ex: mesmo W
 2.  **Nos computadores dos Clientes:**
     * Ao rodar python cliente.py, quando ele perguntar o IP do servidor, em vez de pressionar Enter (127.0.0.1), digite o IP da máquina servidora (ex: 192.168.1.10).
 
-### ⚠️ Solução de Problemas Comuns
+### Solução de Problemas Comuns
 
 * **Erro no Cliente: `ConnectionRefusedError` (Conexão recusada)**
     * **Causa:** O `servidor.py` não está rodando ou você digitou o IP/Porta errados.
