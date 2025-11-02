@@ -3,15 +3,15 @@ Um sistema de chat multi-cliente em Python, implementado com as bibliotecas sock
 
 # Chat Multi-Cliente em Python com Sockets
 
-Este projeto é uma implementação de um sistema de chat Cliente/Servidor desenvolvido em Python [cite: 3][cite_start], utilizando exclusivamente as bibliotecas nativas `socket`  [cite_start]e `threading`.
+Este projeto é uma implementação de um sistema de chat Cliente/Servidor desenvolvido em Python, utilizando exclusivamente as bibliotecas nativas socket e threading.
 
-Foi criado como parte da avaliação da disciplina de Redes de Computadores  (2022.2) [cite_start]da Universidade Federal de Alagoas (UFAL).
+Foi criado como parte da avaliação da disciplina de Redes de Computadores  (2022.2) da Universidade Federal de Alagoas (UFAL).
 
 ## Funcionalidades
 
 * **Servidor Concorrente:** O servidor usa threads para gerenciar múltiplos clientes simultaneamente.
 * **Chat Público:** Mensagens enviadas por um cliente são transmitidas (broadcast) para todos os outros clientes conectados.
-* **Mensagens Privadas:** Suporte para mensagens diretas entre usuários através do comando `/msg <nickname> <mensagem>`.
+* **Mensagens Privadas:** Suporte para mensagens diretas entre usuários através do comando /msg <nickname> <mensagem>.
 * **Lista de Usuários:** O comando /list exibe todos os usuários atualmente conectados ao chat.
 * **Gerenciamento de Nicknames:** O servidor valida os nicknames para garantir que sejam únicos.
 * **Notificações de Status:** O chat exibe mensagens automáticas quando um usuário entra ou sai.
