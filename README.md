@@ -136,7 +136,7 @@ Se seu grupo quiser testar em computadores diferentes na mesma rede (ex: mesmo W
     * **Solução:** Verifique se o terminal do servidor está aberto e mostrando a mensagem "[ESCUTANDO]".
 
 * **Erro no Servidor: `OSError: [Errno 98] Address already in use` (Endereço já em uso)**
-    * **Causa:** Você tentou rodar o `servidor.py` uma segunda vez sem fechar o primeiro.
+    * **Causa:** Você tentou rodar o servidor.py uma segunda vez sem fechar o primeiro.
     * **Solução:** Encontre o terminal onde o servidor já está rodando ou feche o processo anterior.
 
 * **Erro no Cliente: `Nickname inválido ou já em uso`**
