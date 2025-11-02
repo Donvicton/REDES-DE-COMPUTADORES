@@ -118,7 +118,7 @@ def iniciar_servidor():
     try:
         servidor_socket.bind((HOST, PORTA))
         servidor_socket.listen(10) # Fila de até 10 conexões
-        print(f"[ESCUTANDO] Servidor de chat rodando em {HOST}:{PORTA}")
+        print(f"[EXECUTANDO] Servidor de chat rodando em {HOST}:{PORTA}")
 
         while True:
             # Aceita uma nova conexão
@@ -141,4 +141,5 @@ def iniciar_servidor():
         print("[FINALIZADO] Servidor desligado.")
 
 if __name__ == "__main__":
+
     iniciar_servidor()
