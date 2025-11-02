@@ -3,9 +3,9 @@ Um sistema de chat multi-cliente em Python, implementado com as bibliotecas sock
 
 # 💬 Chat Multi-Cliente em Python com Sockets
 
-[cite_start]Este projeto é uma implementação de um sistema de chat Cliente/Servidor desenvolvido em Python [cite: 3][cite_start], utilizando exclusivamente as bibliotecas nativas `socket`  [cite_start]e `threading`.
+Este projeto é uma implementação de um sistema de chat Cliente/Servidor desenvolvido em Python [cite: 3][cite_start], utilizando exclusivamente as bibliotecas nativas `socket`  [cite_start]e `threading`.
 
-[cite_start]Foi criado como parte da avaliação da disciplina de Redes de Computadores  (2022.2) [cite_start]da Universidade Federal de Alagoas (UFAL).
+Foi criado como parte da avaliação da disciplina de Redes de Computadores  (2022.2) [cite_start]da Universidade Federal de Alagoas (UFAL).
 
 ## 🚀 Funcionalidades
 
@@ -18,10 +18,10 @@ Um sistema de chat multi-cliente em Python, implementado com as bibliotecas sock
 
 ## 🛠️ Tecnologias Utilizadas
 
-* [cite_start]**Linguagem:** Python 3 [cite: 3]
+* **Linguagem:** Python 3 
 * **Bibliotecas Principais:**
-    * [cite_start]`socket`: Para a comunicação de rede baseada em TCP.
-    * [cite_start]`threading`: Para permitir que o servidor lide com vários clientes de forma concorrente.
+    * `socket`: Para a comunicação de rede baseada em TCP.
+    * `threading`: Para permitir que o servidor lide com vários clientes de forma concorrente.
 
 ## 🚀 Como Rodar a Aplicação (Instruções Detalhadas)
 
@@ -49,7 +49,7 @@ O servidor é o "cérebro" do chat. Ele deve ser o primeiro a ser iniciado e dev
 4.  **Confirmação:** Se tudo der certo, você verá uma mensagem indicando que o servidor está online e aguardando conexões:
 
     ```
-    [ESCUTANDO] Servidor de chat rodando em 127.0.0.1:12345
+    [EXECUTANDO] Servidor de chat rodando em 127.0.0.1:12345
     ```
 
 **Importante:** Não feche esta janela de terminal! Ela é o seu servidor.
