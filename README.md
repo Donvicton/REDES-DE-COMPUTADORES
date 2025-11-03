@@ -37,7 +37,7 @@ O servidor deve ser o primeiro a ser iniciado e deve permanecer rodando o tempo 
 1.  Abra um terminal (O terminal utlizadsera será o do VScode, mas pode ser qualquer outro terminal).
 2.  Navegue até o diretório onde você salvou os arquivos do projeto.
 3.  Execute o servidor.py
-4.  Para confirmar que o servidor está online essa menssagem será exibida no terminal utilizado: [EXECUTANDO] Servidor de chat rodando em 127.0.0.1:12345
+4.  Para confirmar que o servidor está online essa mensagem será exibida no terminal utilizado: [EXECUTANDO] Servidor de chat rodando em 127.0.0.1:12345
     
 ### Passo 2: Conectar o Primeiro Usuário
 1.  Abra uma NOVA janela de terminal.
@@ -46,7 +46,7 @@ O servidor deve ser o primeiro a ser iniciado e deve permanecer rodando o tempo 
 4.  O script fará duas perguntas:
     * Digite o IP do Servidor (127.0.0.1):
     * Digite seu nickname
-5. Para ter certeza que a conexão foi bem sucedida o chat gerá uma menssagem de Bem-vindo.
+5. Para ter certeza que a conexão foi bem sucedida o chat gerá uma mensagem de Bem-vindo.
 
 ### Passo 3: Conectar o Segundo Cliente (e mais)
 1.  Abra uma TERCEIRA janela de terminal.
@@ -55,7 +55,7 @@ O servidor deve ser o primeiro a ser iniciado e deve permanecer rodando o tempo 
 4.  O script fará as mesmas perguntas:
     * Digite o IP do Servidor...: Pressione Enter.
     * Digite seu nickname: Digite um nome diferente, pois o chat verfica se os nicknames são diferentes.
-5.  Para sabe que outro usuário se conectou ao chat, o terminal vai exibir uma menssagem que o novo usuário faz parte do chat.
+5.  Para sabe que outro usuário se conectou ao chat, o terminal vai exibir uma mensagem que o novo usuário faz parte do chat.
     
 ### Passo 4: Usando os Comandos do Chat
 
