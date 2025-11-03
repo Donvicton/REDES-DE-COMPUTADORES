@@ -68,7 +68,7 @@ Com os clientes conectados, você pode usar os seguintes comandos:
 
 ### Dica: Rodando em Máquinas Diferentes (Rede Local)
 
-Se seu grupo quiser testar em computadores diferentes na mesma rede (ex: mesmo Wi-Fi):
+Se  quiser testar em computadores diferentes na mesma rede (ex: mesmo Wi-Fi):
 
 1.  **No computador do Servidor:**
     * Descubra o IP da máquina na rede local (LAN IP).
