@@ -5,13 +5,11 @@ Um sistema de chat multi-cliente em Python, implementado com as bibliotecas sock
 
 Este projeto é uma implementação de um sistema de chat Cliente/Servidor desenvolvido em Python, utilizando exclusivamente as bibliotecas nativas socket e threading.
 
-Foi criado como parte da avaliação da disciplina de Redes de Computadores  (2022.2) da Universidade Federal de Alagoas (UFAL).
-
 ## Funcionalidades
 
 * **Servidor Concorrente:** O servidor usa threads para gerenciar múltiplos clientes simultaneamente.
 * **Chat Público:** Mensagens enviadas por um cliente são transmitidas (broadcast) para todos os outros clientes conectados.
-* **Mensagens Privadas:** Suporte para mensagens diretas entre usuários através do comando /msg <nickname> <mensagem>.
+* **Mensagens Privadas:** Suporte para mensagens privadas entre usuários através do comando /msg <nickname> <mensagem>.
 * **Lista de Usuários:** O comando /list exibe todos os usuários atualmente conectados ao chat.
 * **Gerenciamento de Nicknames:** O servidor valida os nicknames para garantir que sejam únicos.
 * **Notificações de Status:** O chat exibe mensagens automáticas quando um usuário entra ou sai.
@@ -23,9 +21,9 @@ Foi criado como parte da avaliação da disciplina de Redes de Computadores  (20
     * socket: Para a comunicação de rede baseada em TCP.
     * threading: Para permitir que o servidor lide com vários clientes de forma concorrente.
 
-## Como Rodar a Aplicação
+## Passos de como rodar o chat
 
-Este guia assume que você está rodando o servidor e os clientes na mesma máquina (localhost). Veja a seção "Rodando em Máquinas Diferentes" para instruções de rede.
+Estes passos assume que você está rodando o servidor e os clientes na mesma máquina (localhost). 
 
 ### Pré-requisitos
 
@@ -34,87 +32,39 @@ Este guia assume que você está rodando o servidor e os clientes na mesma máqu
 
 ### Passo 1: Iniciar o Servidor
 
-O servidor é o "cérebro" do chat. Ele deve ser o primeiro a ser iniciado e deve permanecer rodando o tempo todo.
+O servidor deve ser o primeiro a ser iniciado e deve permanecer rodando o tempo todo.
 
-1.  Abra um terminal (Prompt de Comando, PowerShell, Terminal, etc.).
+1.  Abra um terminal (O terminal utlizadsera será o do VScode, mas pode ser qualquer outro terminal).
 2.  Navegue até o diretório onde você salvou os arquivos do projeto.
-3.  Execute o script servidor.py:
-
-    ```bash
-    python servidor.py
-    ```
-
-4.  Confirmação: Se tudo der certo, você verá uma mensagem indicando que o servidor está online e aguardando conexões:
-
-    ```
-    [EXECUTANDO] Servidor de chat rodando em 127.0.0.1:12345
-    ```
-
----
-
-### Passo 2: Conectar o Primeiro Cliente
-
-Agora, vamos conectar o primeiro usuário ao seu servidor.
-
-1.  Abra uma NOVA janela de terminal. (Não use a mesma janela do servidor).
+3.  Execute o servidor.py
+4.  Para confirmar que o servidor está online essa menssagem será exibida no terminal utilizado: [EXECUTANDO] Servidor de chat rodando em 127.0.0.1:12345
+    
+### Passo 2: Conectar o Primeiro Usuário
+1.  Abra uma NOVA janela de terminal.
 2.  Navegue até o mesmo diretório do projeto.
-3.  Execute o script cliente.py:
-
-    ```bash
-    python cliente.py
-    ```
-
+3.  Execute o cliente.py:
 4.  O script fará duas perguntas:
-    * Digite o IP do Servidor (default 127.0.0.1):
-        * Pressione Enter para aceitar o padrão (127.0.0.1), já que o servidor está na sua própria máquina.
-    * Digite seu nickname:
-        * O servidor pedirá seu apelido. Digite um nome, por exemplo: DONVICTON
-
-5.  Confirmação: Você verá as mensagens de boas-vindas do sistema e estará conectado. No terminal do servidor, você verá uma mensagem como: [CONEXÃO BEM-SUCEDIDA] ... agora é DONVICTON.
-
----
+    * Digite o IP do Servidor (127.0.0.1):
+    * Digite seu nickname
+5. Para ter certeza que a conexão foi bem sucedida o chat gerá uma menssagem de Bem-vindo.
 
 ### Passo 3: Conectar o Segundo Cliente (e mais)
-
-O objetivo é um chat multi-cliente. Para testar isso, você precisa de pelo menos dois clientes conectados ao mesmo tempo.
-
-1.  Abra uma TERCEIRA janela de terminal (você agora terá 3 terminais abertos: 1 servidor, 2 clientes).
+1.  Abra uma TERCEIRA janela de terminal.
 2.  Navegue até o mesmo diretório do projeto.
-3.  Execute o script cliente.py novamente:
-
-    ```bash
-    python cliente.py
-    ```
-
+3.  Execute o cliente.py novamente:
 4.  O script fará as mesmas perguntas:
     * Digite o IP do Servidor...: Pressione Enter.
-    * Digite seu nickname: Digite um nome DIFERENTE, por exemplo: WICTOR
-        * (Se você usar o mesmo nome, o servidor recusará a conexão).
-
-5.  Confirmação:
-    * No terminal do Cliente 1 (DONVICTON), você verá a mensagem: WICTOR entrou no chat.`
-    * No terminal do Cliente 2 (WICTOR), você verá a mensagem de boas-vindas.
-
-Agora, qualquer mensagem que você digitar em um terminal de cliente aparecerá no outro!
-
----
-
+    * Digite seu nickname: Digite um nome diferente, pois o chat verfica se os nicknames são diferentes.
+5.  Para sabe que outro usuário se conectou ao chat, o terminal vai exibir uma menssagem que o novo usuário faz parte do chat.
+    
 ### Passo 4: Usando os Comandos do Chat
 
 Com os clientes conectados, você pode usar os seguintes comandos:
 
 * **(Mensagem Pública):** Apenas digite sua mensagem e pressione Enter. Todos no chat verão.
-    * Exemplo: Olá pessoal!
 * **(Listar Usuários):** Digite /list para ver quem está online.
-    * Exemplo: /list
-    * Retorno: Usuários online: DONVICTON, WICTOR
 * **(Mensagem Privada):** Use o formato /msg <nickname> <mensagem>.
-    * Exemplo: /msg WICTOR tudo bem?
-    * (Note: **sem** os <` `>. O nickname é WICTOR, não <WICTOR>).
 * **(Sair):** Digite sair para se desconectar.
-    * Exemplo: sair
-
----
 
 ### Dica: Rodando em Máquinas Diferentes (Rede Local)
 
