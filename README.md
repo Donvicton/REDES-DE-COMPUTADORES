@@ -34,8 +34,8 @@ Estes passos assume que você está rodando o servidor e os clientes na mesma m�
 
 O servidor deve ser o primeiro a ser iniciado e deve permanecer rodando o tempo todo.
 
-1.  Abra um terminal (O terminal utlizadsera será o do VScode, mas pode ser qualquer outro terminal).
-2.  Navegue até o diretório onde você salvou os arquivos do projeto.
+1.  Abra um terminal (O terminal utlizado será o do VScode, mas pode ser qualquer outro terminal).
+2.  Navegue até o diretório onde foi salvo os arquivos do projeto.
 3.  Execute o servidor.py
 4.  Para confirmar que o servidor está online essa mensagem será exibida no terminal utilizado: [EXECUTANDO] Servidor de chat rodando em 127.0.0.1:12345
     
