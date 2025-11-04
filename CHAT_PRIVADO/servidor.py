@@ -1,48 +1,52 @@
 # servidor.py
-import socket
-import threading
+import socket #ele faz comunicação entre duas porta, fonte e destino(servidor e cliente)
+import threading #execução que permitem que um programa execute múltiplas tarefas simultaneamente dentro do mesmo processo.
 
 HOST = '127.0.0.1' # Localhost
 PORTA = 12345
 
 # Dicionário para armazenar os clientes conectados
 # A chave será o socket do cliente, o valor será o nickname
-clientes = {} 
+clientes = {}  #vazio, guarda todos os clientes conectados
 # Lock para proteger o acesso ao dicionário 'clientes' (necessário por causa das threads)
-clientes_lock = threading.Lock()
+clientes_lock = threading.Lock() #usado para proteger cada função usada para os clientes
 
 def broadcast(mensagem, remetente_socket=None):
-    """ Envia uma mensagem para todos os clientes, exceto o remetente. """
-    with clientes_lock:
+        #Envia uma mensagem para todos os clientes, exceto o remetente. 
+    with clientes_lock: #cada thread por vez
         for cliente_socket in clientes:
-            if cliente_socket != remetente_socket:
+            if cliente_socket != remetente_socket: #mensagem nao retorna para o remetente
                 try:
                     cliente_socket.send(mensagem.encode('utf-8'))
                 except socket.error:
                     # Se houver erro, assume que o cliente desconectou
                     remover_cliente(cliente_socket)
 
-def remover_cliente(cliente_socket):
-    """ Remove um cliente do dicionário de forma segura. """
-    if cliente_socket in clientes:
-        nickname = clientes.pop(cliente_socket)
-        cliente_socket.close()
-        print(f"[DESCONEXÃO] {nickname} desconectou.")
-        # Avisa a todos que o usuário saiu
-        broadcast(f"[SYSTEM] {nickname} saiu do chat.", None)
-
+def remover_cliente(cliente_socket): #saber quem remover
+        #Remove um cliente do dicionário de forma segura
+    with clientes_lock:
+        if cliente_socket in clientes: #uma checagem para saber se tem alguem que precisa remover ou se ja saiu
+            nickname = clientes.pop(cliente_socket) #recebe a chave, remove o item, e devolve só o valor (o nickname).
+            try:
+                cliente_socket.close() #desliga a conexão com o cliente
+            except:
+                pass # Ignora erro no close (socket pode já estar fechado)    
+            print(f"[DESCONEXÃO] {nickname} desconectou.")
+            return nickname
+        return None  # Não achou ninguém para remover
+            
 def lidar_com_cliente(conexao, endereco):
-    """ Função alvo da Thread: gerencia a conexão com um único cliente. """
+    #Função alvo da Thread: gerencia a conexão com um único cliente
     print(f"[NOVA CONEXÃO] {endereco} tentando se conectar...")
     
     try:
         # 1. Solicitar e validar o nickname
         conexao.send("Digite seu nickname: ".encode('utf-8'))
-        nickname = conexao.recv(1024).decode('utf-8').strip()
+        nickname = conexao.recv(1024).decode('utf-8').strip() #recebe 1024bytes e transforma bytes em string
 
         # Garante que o nickname seja único
         with clientes_lock:
-            while not nickname or nickname in clientes.values():
+            while not nickname or nickname in clientes.values(): #verifica se o nickname esta em uso
                 conexao.send("[ERRO] Nickname inválido ou já em uso. Tente outro: ".encode('utf-8'))
                 nickname = conexao.recv(1024).decode('utf-8').strip()
             
@@ -59,7 +63,7 @@ def lidar_com_cliente(conexao, endereco):
             # Espera receber dados do cliente (função primitiva)
             dados = conexao.recv(1024)
             if not dados:
-                break # Cliente desconectou (recv() retornou 0 bytes)
+                break # Cliente desconectou (recv() retornou 0 bytes), sai do loop
             
             mensagem = dados.decode('utf-8').strip()
 
@@ -105,15 +109,19 @@ def lidar_com_cliente(conexao, endereco):
         print(f"[ERRO INESPERADO] {e}")
     finally:
         # Garante que o cliente seja removido ao sair do loop
-        with clientes_lock:
-            remover_cliente(conexao)
+        # 1. Chama a faxineira (que agora é autônoma e usa seu próprio lock)
+        nickname_que_saiu = remover_cliente(conexao)
+        
+        # 2. Se a faxineira realmente removeu alguém...
+        if nickname_que_saiu:
+            broadcast(f"[SYSTEM] {nickname_que_saiu} saiu do chat.", None)
 
 def iniciar_servidor():
-    """ Função principal para iniciar o servidor de chat. """
+        #Função principal para iniciar o servidor de chat
     
     # Cria o socket (primitiva socket())
-    servidor_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    servidor_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    servidor_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #para dizer ao servidor que o ip usado sera o IPv4 e usar o TCP para garantir a entrega das mensagens
+    servidor_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #permite que o servidor use a porta novamente imediatamente
     
     try:
         servidor_socket.bind((HOST, PORTA))
@@ -124,10 +132,10 @@ def iniciar_servidor():
             # Aceita uma nova conexão
             conexao_cliente, endereco_cliente = servidor_socket.accept()
             
-            # Cria e inicia uma nova Thread para cada cliente (Obrigatório) [cite: 3]
+            # Cria e inicia uma nova Thread para cada cliente (Obrigatório) 
             thread_cliente = threading.Thread(target=lidar_com_cliente, args=(conexao_cliente, endereco_cliente))
-            thread_cliente.daemon = True # Permite que o programa feche
-            thread_cliente.start()
+            thread_cliente.daemon = True # Permite que o programa feche 
+            thread_cliente.start() #volta para esperar uma nova conexão (Inicia a thread)
 
     except KeyboardInterrupt:
         print("\n[DESLIGANDO] Desligando o servidor...")
@@ -140,6 +148,6 @@ def iniciar_servidor():
         servidor_socket.close()
         print("[FINALIZADO] Servidor desligado.")
 
-if __name__ == "__main__":
+if __name__ == "__main__": #start
 
     iniciar_servidor()
