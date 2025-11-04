@@ -66,19 +66,6 @@ Com os clientes conectados, você pode usar os seguintes comandos:
 * **(Mensagem Privada):** Use o formato /msg <nickname> <mensagem>.
 * **(Sair):** Digite sair para se desconectar.
 
-### Dica: Rodando em Máquinas Diferentes (Rede Local)
-
-Se  quiser testar em computadores diferentes na mesma rede (ex: mesmo Wi-Fi):
-
-1.  **No computador do Servidor:**
-    * Descubra o IP da máquina na rede local (LAN IP).
-        * No Windows: abra o `cmd` e digite ipconfig. Procure por "Endereço IPv4" (algo como 192.168.1.10).
-        * No macOS/Linux: abra o terminal e digite ip addr ou ifconfig.
-    * **Importante:** Pode ser necessário criar uma regra de *firewall* no computador do servidor para permitir conexões de entrada na porta 12345.
-
-2.  **Nos computadores dos Clientes:**
-    * Ao rodar python cliente.py, quando ele perguntar o IP do servidor, em vez de pressionar Enter (127.0.0.1), digite o IP da máquina servidora (ex: 192.168.1.10).
-
 ### Solução de Problemas Comuns
 
 * **Erro no Cliente: `ConnectionRefusedError` (Conexão recusada)**
